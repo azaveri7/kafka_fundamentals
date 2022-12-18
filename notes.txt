@@ -1,0 +1,34 @@
+1. Kafka producer
+
+Flow.
+
+Producer -> Serializer -> Partitioner
+
+Kafka producer can send messages in 3 ways
+
+KafkaProducer<String, Integer> producer = new KafkaProducer<String, Integer>(props);
+        ProducerRecord<String, Integer> record = new ProducerRecord<>("OrderTopic", "Mac Book Pro", 10);
+
+a.
+
+        try {
+            producer.send(record);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            producer.close();
+        }
+
+Here it is kind of fire and forget. You have sent the message, we do not care about success/failure.
+
+b.
+try {
+    RecordMetadata recordMetadata = producer.send(record);
+    System.out.println(recordMetadata.partition());
+    System.out.println(recordMetadata.offset());
+    System.out.println("Message Sent Successfully");
+} catch (Exception e) {
+    e.printStackTrace();
+} finally {
+    producer.close();
+}
