@@ -1,0 +1,8 @@
+com/paathshala/kafka/orderproducer/customserializers/OrderProducer.class
+com/paathshala/kafka/avro/Order$Builder.class
+com/paathshala/kafka/orderproducer/OrderProducer.class
+com/paathshala/kafka/orderproducer/customserializers/Order.class
+com/paathshala/kafka/avro/Order.class
+com/paathshala/kafka/orderproducer/OrderCallback.class
+com/paathshala/kafka/orderproducer/customserializers/OrderSerializer.class
+com/paathshala/kafka/avro/Order$1.class

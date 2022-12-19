@@ -1,1 +1,4 @@
-kafka/orderconsumer/OrderConsumer.class
+com/paathshala/orderconsumer/kafka/customdeserializers/Order.class
+com/paathshala/orderconsumer/kafka/customdeserializers/OrderConsumer.class
+com/paathshala/orderconsumer/kafka/customdeserializers/OrderDeserializer.class
+com/paathshala/orderconsumer/OrderConsumer.class
