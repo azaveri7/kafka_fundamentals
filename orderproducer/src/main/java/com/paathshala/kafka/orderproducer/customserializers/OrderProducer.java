@@ -2,6 +2,7 @@ package com.paathshala.kafka.orderproducer.customserializers;
 
 import java.util.Properties;
 
+import com.paathshala.kafka.orderproducer.customserializers.partitioners.VIPPartitioner;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
@@ -13,12 +14,12 @@ public class OrderProducer {
         Properties props = new Properties();
         props.setProperty("bootstrap.servers", "localhost:9092");
         props.setProperty("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-        props.setProperty("value.serializer", "kafka.orderproducer.customserializers.OrderSerializer");
-        //props.setProperty("partitioner.class", VIPPartitioner.class.getName());
+        props.setProperty("value.serializer", "com.paathshala.kafka.orderproducer.customserializers.OrderSerializer");
+        props.setProperty("partitioner.class", VIPPartitioner.class.getName());
 
         KafkaProducer<String, Order> producer = new KafkaProducer<String, Order>(props);
         Order order = new Order();
-        order.setCustomerName("Anand Zaveri");
+        order.setCustomerName("Anand");
         order.setProduct("IPhone");
         order.setQuantity(1);
         ProducerRecord<String, Order> record = new ProducerRecord<>("OrderPartitionedTopic",

@@ -24,15 +24,18 @@ public class OrderConsumer {
         KafkaConsumer<String, Order> consumer = new KafkaConsumer<>(props);
         consumer.subscribe(Collections.singletonList("OrderPartitionedTopic"));
 
-        ConsumerRecords<String, Order> records = consumer.poll(Duration.ofSeconds(10));
-        for(ConsumerRecord<String, Order> record : records){
-            String customerName = record.key();
-            Order order = record.value();
-            System.out.println("Customer Name: " + customerName);
-            System.out.println("Product: " + order.getProduct());
-            System.out.println("Quantity: " + order.getQuantity());
-            System.out.println("Partition: " + record.partition());
+        try{
+            ConsumerRecords<String, Order> records = consumer.poll(Duration.ofSeconds(10));
+            for(ConsumerRecord<String, Order> record : records){
+                String customerName = record.key();
+                Order order = record.value();
+                System.out.println("Customer Name: " + customerName);
+                System.out.println("Product: " + order.getProduct());
+                System.out.println("Quantity: " + order.getQuantity());
+                System.out.println("Partition: " + record.partition());
+            }
+        } finally {
+            consumer.close();
         }
-        consumer.close();
     }
 }
